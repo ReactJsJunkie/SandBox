@@ -1,21 +1,17 @@
 const initState = {
-  post: {},
-  posts: [],
-  error: {
-    title: {
-      status: false,
-      class: "form-control",
-      text: {
-        message: "Please give a subject to your post",
-        class: "form-text text-muted"
-      }
-    }
-  }
+  posts: []
 };
 
-export default function postReducer(state = initState, { type, payload }) {
-  switch (type) {
+const postReducer = (state = initState, action) => {
+  switch (action.type) {
+    case "NEW_POST":
+      return {
+        ...state,
+        posts: state.posts.concat(action.payload)
+      };
     default:
       return state;
   }
-}
+};
+
+export default postReducer;
